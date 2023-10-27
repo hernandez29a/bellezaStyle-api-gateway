@@ -8,6 +8,7 @@ export enum RabbitMQ {
 
 export enum UserMSG {
   CREATE = 'CREATE_USER',
+  REGISTER = 'REGISTER_USER',
   FIND_ALL = 'FIND_USERS',
   FIND_ONE = 'FIND_USER',
   UPDATE = 'UPDATE_USER',
