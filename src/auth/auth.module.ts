@@ -17,7 +17,6 @@ import { UserService } from 'src/user/user.service';
   imports: [
     CommonModule,
     ConfigModule,
-    //UserModule,
     MongooseModule.forFeature([
       {
         name: User.name,
