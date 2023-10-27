@@ -8,7 +8,6 @@ import { JwtStrategy } from './strategies/jwt-strategy';
 import { User, UserSchema } from 'src/user/entities/user.entity';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { UserModule } from 'src/user/user.module';
 import { UserService } from 'src/user/user.service';
 
 @Module({

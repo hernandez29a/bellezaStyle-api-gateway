@@ -24,31 +24,31 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('register')
-  @UseGuards(new RolesGuard())
+  //@UseGuards(new RolesGuard())
   register(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
 
   @Post()
-  @Auth(ValidRoles.ADMIN_ROLE, ValidRoles.USER_ROLE)
+  //@Auth(ValidRoles.ADMIN_ROLE, ValidRoles.USER_ROLE)
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
 
   @Get()
-  @Auth(ValidRoles.ADMIN_ROLE)
+  //@Auth(ValidRoles.ADMIN_ROLE)
   findAll(@Query() paginationDto: PaginationDto) {
     return this.userService.findAll(paginationDto);
   }
 
   @Get(':id')
-  @Auth(ValidRoles.ADMIN_ROLE)
+  //@Auth(ValidRoles.ADMIN_ROLE)
   findOne(@Param('id', ParseMongoIdPipe) id: string) {
     return this.userService.findOne(id);
   }
 
   @Patch(':id')
-  @Auth(ValidRoles.ADMIN_ROLE, ValidRoles.USER_ROLE)
+  //@Auth(ValidRoles.ADMIN_ROLE, ValidRoles.USER_ROLE)
   update(
     @Param('id', ParseMongoIdPipe) id: string,
     @Body() updateUserDto: UpdateUserDto,
@@ -57,7 +57,7 @@ export class UserController {
   }
 
   @Delete(':id')
-  @Auth(ValidRoles.ADMIN_ROLE)
+  //@Auth(ValidRoles.ADMIN_ROLE)
   remove(@Param('id', ParseMongoIdPipe) id: string) {
     return this.userService.remove(id);
   }
