@@ -163,6 +163,14 @@ export class UserService {
       //console.log(pass);
     }*/
 
+    // validar que exista un usuario con este id
+    const validUser = this.userModel.findById(id);
+    if (!validUser) {
+      throw new NotFoundException(
+        `User with id, name: ${id} it's not in the bd`,
+      );
+    }
+
     const data = {
       //password: pass,
       ...restoData,
@@ -172,7 +180,10 @@ export class UserService {
       user = await this.userModel.findByIdAndUpdate(id, data, {
         new: true,
       });
-      return user;
+      return {
+        msg: 'usuario actualizado',
+        user,
+      };
     } catch (error) {
       this.errorHandler.errorHandleException(error);
     }
