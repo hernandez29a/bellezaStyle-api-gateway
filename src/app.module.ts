@@ -7,6 +7,7 @@ import { CommonModule } from './common/common.module';
 import { EnvConfiguration } from './config/env.config';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { AuthModule } from './auth/auth.module';
     CommonModule,
     UserModule,
     AuthModule,
+    ProductModule,
   ],
   controllers: [],
   providers: [],

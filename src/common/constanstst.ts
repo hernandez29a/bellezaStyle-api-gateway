@@ -15,6 +15,15 @@ export enum UserMSG {
   DELETE = 'DELETE_USER',
 }
 
+export enum ProductMSG {
+  CREATE = 'CREATE_PRODUCT',
+  REGISTER = 'REGISTER_PRODUCT',
+  FIND_ALL = 'FIND_PRODUCT',
+  FIND_ONE = 'FIND_PRODUCT',
+  UPDATE = 'UPDATE_PRODUCT',
+  DELETE = 'DELETE_PRODUCT',
+}
+
 export enum AuthMSG {
   VALID_USER = 'VALID_USER',
 }
