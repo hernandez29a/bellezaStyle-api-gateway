@@ -3,7 +3,7 @@ export enum RabbitMQ {
   UserQueue = 'users',
   ProductQueue = 'products',
   CategoryQueue = 'categories',
-  ImageQueue = 'img',
+  ImageQueue = 'images',
 }
 
 export enum UserMSG {
@@ -36,6 +36,11 @@ export enum CategoryMSG {
 
 export enum AuthMSG {
   VALID_USER = 'VALID_USER',
+}
+
+export enum ImgMSG {
+  GET_IMAGE = 'GET_IMAGE',
+  UPDATE = 'UPDATE_IMAGE',
 }
 
 /*export enum PassengerMSG {
