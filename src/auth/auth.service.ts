@@ -46,8 +46,11 @@ export class AuthService {
   }
 
   //? renovar el token
-  async renewToken(user: IUser) {
-    return { user, token: this.getJwtToken({ id: user.id }) };
+  async renewToken(userId: string) {
+    const user = await lastValueFrom(
+      this._clientProxiUser.send(UserMSG.FIND_ONE, userId),
+    );
+    return { user, token: this.getJwtToken({ id: userId }) };
   }
 
   private getJwtToken(payload: JwtPayload) {

@@ -39,7 +39,7 @@ export class UserController {
   }
 
   @Get(':id')
-  //@Auth(ValidRoles.ADMIN_ROLE)
+  @Auth(ValidRoles.ADMIN_ROLE)
   findOne(@Param('id', ParseMongoIdPipe) id: string): Observable<IUser> {
     return this._clientProxyUser.send(UserMSG.FIND_ONE, id);
   }

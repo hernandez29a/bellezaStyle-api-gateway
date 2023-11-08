@@ -6,6 +6,7 @@ import { IUser } from 'src/common/interfaces/user.interface';
 import { RolesGuard } from './guards/roles-guard/roles.guard';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { Observable } from 'rxjs';
+import { ValidRoles } from './interfaces';
 
 @Controller('auth')
 export class AuthController {
@@ -17,9 +18,10 @@ export class AuthController {
   }
 
   @Get('renewToken')
-  @Auth()
+  @Auth(ValidRoles.ADMIN_ROLE, ValidRoles.ESPEC_ROLE, ValidRoles.USER_ROLE)
   renewToken(@GetUser() user: IUser) {
-    return this.authService.renewToken(user);
+    //return `del usuario es ${user._id}`;
+    return this.authService.renewToken(user._id);
   }
 
   @Post('register')

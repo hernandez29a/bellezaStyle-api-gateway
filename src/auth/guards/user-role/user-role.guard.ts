@@ -24,8 +24,9 @@ export class UserRoleGuard implements CanActivate {
     if (validRoles.length === 0) return true;
     const req = context.switchToHttp().getRequest();
     const user = req.user as IUser;
-    console.log(user);
-
+    // * validar despues que se haga una update console.log(user);
+    //console.log(user, 'Usuario logeado valido');
+    //console.log(req, 'el usuario es: ' + user);
     if (!user) {
       throw new BadRequestException('User not found');
     }
