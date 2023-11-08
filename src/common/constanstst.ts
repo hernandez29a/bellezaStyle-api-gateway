@@ -13,6 +13,9 @@ export enum UserMSG {
   FIND_ONE = 'FIND_USER',
   UPDATE = 'UPDATE_USER',
   DELETE = 'DELETE_USER',
+  GET_EMAIL = 'EMAIL_USER',
+  VALID_USER = 'VALID_USER',
+  RENEW_TOKEN = 'RENEW_TOKEN',
 }
 
 export enum ProductMSG {
@@ -34,29 +37,8 @@ export enum CategoryMSG {
   ADD_PRODUCT = 'ADD_PRODUCT'
 }
 
-export enum AuthMSG {
-  VALID_USER = 'VALID_USER',
-}
-
 export enum ImgMSG {
   GET_IMAGE = 'GET_IMAGE',
   UPDATE = 'UPDATE_IMAGE',
 }
-
-/*export enum PassengerMSG {
-  CREATE = 'CREATE_PASSENGER',
-  FIND_ALL = 'FIND_PASSENGERS',
-  FIND_ONE = 'FIND_PASSENGER',
-  UPDATE = 'UPDATE_PASSENGER',
-  DELETE = 'DELETE_PASSENGER',
-}
-
-export enum FlightMSG {
-  CREATE = 'CREATE_FLIGHT',
-  FIND_ALL = 'FIND_FLIGHTS',
-  FIND_ONE = 'FIND_FLIGHT',
-  UPDATE = 'UPDATE_FLIGHT',
-  DELETE = 'DELETE_FLIGHT',
-  ADD_PASSENGER = 'ADD_PASSENGER',
-}*/
 

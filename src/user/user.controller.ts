@@ -26,20 +26,14 @@ export class UserController {
   constructor(private readonly clientProxy: ClientProxyBellezaConsultin) {}
   private _clientProxyUser = this.clientProxy.clientProxyUsers();
 
-  @Post('register')
-  @UseGuards(new RolesGuard())
-  register(@Body() createUserDto: CreateUserDto): Observable<IUser> {
-    return this._clientProxyUser.send(UserMSG.REGISTER, createUserDto);
-  }
-
   @Post()
-  //@Auth(ValidRoles.ADMIN_ROLE, ValidRoles.USER_ROLE)
+  @Auth(ValidRoles.ADMIN_ROLE, ValidRoles.USER_ROLE)
   create(@Body() createUserDto: CreateUserDto): Observable<IUser> {
     return this._clientProxyUser.send(UserMSG.CREATE, createUserDto);
   }
 
   @Get()
-  //@Auth(ValidRoles.ADMIN_ROLE)
+  @Auth(ValidRoles.ADMIN_ROLE)
   findAll(@Query() paginationDto: PaginationDto): Observable<IUser[]> {
     return this._clientProxyUser.send(UserMSG.FIND_ALL, paginationDto);
   }
@@ -51,7 +45,7 @@ export class UserController {
   }
 
   @Patch(':id')
-  //@Auth(ValidRoles.ADMIN_ROLE, ValidRoles.USER_ROLE)
+  @Auth(ValidRoles.ADMIN_ROLE, ValidRoles.USER_ROLE)
   update(
     @Param('id', ParseMongoIdPipe) id: string,
     @Body() updateUserDto: UpdateUserDto,
@@ -61,7 +55,7 @@ export class UserController {
   }
 
   @Delete(':id')
-  //@Auth(ValidRoles.ADMIN_ROLE)
+  @Auth(ValidRoles.ADMIN_ROLE)
   remove(@Param('id', ParseMongoIdPipe) id: string): Observable<IUser> {
     return this._clientProxyUser.send(UserMSG.DELETE, id);
   }

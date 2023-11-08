@@ -1,21 +1,30 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { Auth, GetUser } from './decorators';
-import { User } from '../user/entities/user.entity';
-import { UserService } from '../user/user.service';
 import { LoginUserDto } from './dto/login-user.dto';
+import { AuthService } from './auth.service';
+import { IUser } from 'src/common/interfaces/user.interface';
+import { RolesGuard } from './guards/roles-guard/roles.guard';
+import { CreateUserDto } from 'src/user/dto/create-user.dto';
+import { Observable } from 'rxjs';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post('login')
   loginUser(@Body() loginUserDto: LoginUserDto) {
-    return this.userService.login(loginUserDto);
+    return this.authService.login(loginUserDto);
   }
 
   @Get('renewToken')
   @Auth()
-  renewToken(@GetUser() user: User) {
-    return this.userService.renewToken(user);
+  renewToken(@GetUser() user: IUser) {
+    return this.authService.renewToken(user);
+  }
+
+  @Post('register')
+  @UseGuards(new RolesGuard())
+  register(@Body() createUserDto: CreateUserDto) {
+    return this.authService.register(createUserDto);
   }
 }

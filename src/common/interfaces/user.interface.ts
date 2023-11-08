@@ -1,4 +1,5 @@
 export interface IUser {
+  id?: string;
   displayName: string;
   skinType: string;
   gender: ['M', 'F'];
