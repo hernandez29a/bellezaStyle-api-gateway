@@ -56,11 +56,11 @@ export class AuthService {
   }
 
   async register(createUserDto: CreateUserDto) {
-    const user: IUser = await lastValueFrom(
+    const user = await lastValueFrom(
       this._clientProxiUser.send(UserMSG.CREATE, createUserDto),
     );
-
+    const { password, ...userResto } = user;
     // ? retornar el JWT
-    return { user, token: this.getJwtToken({ id: user.id }) };
+    return { userResto, token: this.getJwtToken({ id: user._id }) };
   }
 }
