@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable prefer-const */
 import {
   BadRequestException,
   //BadRequestException,
@@ -30,22 +29,20 @@ export class AuthService {
   private _clientProxiUser = this.clientProxy.clientProxyUsers();
 
   async login(loginUserDto: LoginUserDto) {
-    const { email, password } = loginUserDto;
-    const data = {
-      email,
-      password,
-    };
-    const user: IUser = await lastValueFrom(
-      this._clientProxiUser.send(UserMSG.GET_EMAIL, data),
+    const user = await lastValueFrom(
+      this._clientProxiUser.send(UserMSG.GET_EMAIL, loginUserDto),
     );
-    //console.log(user);
-    /*const user = await this.userModel.findOne({
-      email: email,
-    });*/
+    if (!user) {
+      throw new NotFoundException(`Credential not valids email`);
+    }
+    if (!bcrypt.compareSync(loginUserDto.password, user.password))
+      throw new UnauthorizedException(`Credential not valids password`);
+    // Eliminar el password del objeto user
+    const { password, ...userResto } = user;
 
-    //console.log(user);
     // ? retornar el JWT
-    return { user, token: this.getJwtToken({ id: user.id }) };
+    //console.log(user);
+    return { userResto, token: this.getJwtToken({ id: user._id }) };
   }
 
   //? renovar el token
